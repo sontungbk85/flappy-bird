@@ -1,15 +1,10 @@
-FROM python:3.9-slim-buster
+FROM python:3.8-slim-buster
 
 WORKDIR /app
 
-COPY . /app
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-RUN apt-get update && apt-get install -y \
-    libsdl2-dev \
-    libsdl2-image-dev \
-    libsdl2-mixer-dev \
-    libsdl2-ttf-dev \
-    && pip install --no-cache-dir -r requirements.txt
+COPY . .
 
 CMD ["python", "/app/flappy.py"]
-USER root
