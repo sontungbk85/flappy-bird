@@ -12,3 +12,4 @@ RUN apt-get update && apt-get install -y \
     && pip install --no-cache-dir -r requirements.txt
 
 CMD ["python", "/app/flappy.py"]
+USER root
