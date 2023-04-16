@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: game-demo
   labels:
-    app: flappy-bird
+    app: flappy-bird:24
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flappy-bird
+      app: flappy-bird:24
   template:
     metadata:
       labels:
-        app: flappy-bird
+        app: flappy-bird:24
     spec:
       containers:
-      - name: flappy-bird
-        image: sontungbk85/flappy-bird:22
+      - name: flappy-bird:24
+        image: sontungbk85/flappy-bird:24
         ports:
         - containerPort: 5100
 ---
@@ -26,7 +26,7 @@ metadata:
   name: game-demo
 spec:
   selector:
-    app.kubernetes.io/name: flappy-bird
+    app.kubernetes.io/name: flappy-bird:24
   ports:
   - protocol: TCP
     port: 80
