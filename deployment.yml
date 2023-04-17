@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flappybird
-        image: sontungbk85/flappy-bird:51
+        image: sontungbk85/flappy-bird:52
         ports:
         - containerPort: 5100
 ---
