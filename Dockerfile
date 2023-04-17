@@ -2,7 +2,8 @@ FROM python:3.9
 
 # Install Xvfb and necessary audio-related dependencies
 RUN apt-get update && apt-get install -y xvfb pulseaudio libasound2-dev alsa-utils
-
+RUN apt-get update && \
+    apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
 # Install dependencies for pygame
 RUN apt-get update && apt-get install -y \
     libsdl2-dev \
