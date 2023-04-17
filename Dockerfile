@@ -21,5 +21,7 @@ RUN pip install pygame
 # Set the display environment variable
 ENV DISPLAY=:99
 
+WORKDIR /app
+COPY . .
 # Start Xvfb
 CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 &> xvfb.log & python flappy.py"]
