@@ -3,7 +3,6 @@ FROM python:3.9
 # Install Xvfb
 RUN apt-get update && apt-get install -y xvfb
 
-# Install dependencies for pygame and PulseAudio
 RUN apt-get update && apt-get install -y \
     libsdl2-dev \
     libsdl2-image-dev \
@@ -16,12 +15,9 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     alsa-utils \
     libasound2-dev \
-    pulseaudio \
-    pulseaudio-utils
-
+    pulseaudio
 # Install pygame
 RUN pip install pygame
-RUN pip install PyAudio
 
 # Set the display environment variable
 ENV DISPLAY=:99
