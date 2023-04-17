@@ -6,4 +6,4 @@ WORKDIR /app
 
 RUN pip install pygame
 
-CMD ["python", "game.py"]
+CMD ["python", "flappy.py"]
