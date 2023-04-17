@@ -3,7 +3,7 @@ FROM python:3.9
 # Install Xvfb
 RUN apt-get update && apt-get install -y xvfb
 
-# Install dependencies for pygame
+# Install dependencies for pygame and PulseAudio
 RUN apt-get update && apt-get install -y \
     libsdl2-dev \
     libsdl2-image-dev \
@@ -16,9 +16,10 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     alsa-utils \
     libasound2-dev \
-    pulseaudio
+    pulseaudio \
+    pulseaudio-utils
 
-# Install pygame and other dependencies
+# Install pygame
 RUN pip install pygame
 
 # Set the display environment variable
@@ -28,7 +29,10 @@ ENV DISPLAY=:99
 ENV PULSE_SERVER unix:/tmp/pulse-unix
 ENV PULSE_COOKIE /tmp/pulse-cookie
 
+# Copy your application code into the container
 WORKDIR /app
 COPY . .
+
 # Start PulseAudio and Xvfb
-CMD ["sh", "-c", "pulseaudio -D --verbose && Xvfb :99 -screen 0 1024x768x16 &> xvfb.log & python flappy.py"]
+CMD ["sh", "-c", "pulseaudio --start && Xvfb :99 -screen 0 1024x768x16 &> xvfb.log & python flappy.py"]
+
