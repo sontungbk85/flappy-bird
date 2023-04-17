@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install pygame
 RUN pip install pygame
-RUN pip install PyAudio==0.2.12
+RUN pip install PyAudio
 
 # Set the display environment variable
 ENV DISPLAY=:99
