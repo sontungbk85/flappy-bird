@@ -13,7 +13,10 @@ RUN apt-get update && apt-get install -y \
     libswscale-dev \
     libavformat-dev \
     libavcodec-dev \
-    zlib1g-dev
+    zlib1g-dev \
+    libasound2-dev \
+    alsa-utils \
+    pulseaudio
 
 # Install pygame and other dependencies
 RUN pip install pygame
