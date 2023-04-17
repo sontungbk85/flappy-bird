@@ -1,33 +1,16 @@
-FROM python:3.9
+# Sử dụng hệ điều hành Ubuntu 20.04
+FROM ubuntu:20.04
 
-# Install Xvfb and necessary audio-related dependencies
-RUN apt-get update && apt-get install -y xvfb pulseaudio libasound2-dev alsa-utils
+# Cài đặt các gói cần thiết
 RUN apt-get update && \
-    apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-# Install dependencies for pygame
-RUN apt-get update && apt-get install -y \
-    libsdl2-dev \
-    libsdl2-image-dev \
-    libsdl2-mixer-dev \
-    libsdl2-ttf-dev \
-    libportmidi-dev \
-    libswscale-dev \
-    libavformat-dev \
-    libavcodec-dev \
-    zlib1g-dev 
+    apt-get install -y python3 && \
+    apt-get install -y python3-pygame
 
-# Install pygame and other dependencies
-RUN pip install pygame
+# Copy các file cần thiết vào image
+COPY . /app
 
-# Set the display environment variable
-ENV DISPLAY=:99
-
-# Set environment variables for PulseAudio
-ENV PULSE_SERVER unix:/tmp/pulse-unix
-ENV PULSE_COOKIE /tmp/pulse-cookie
-
+# Thiết lập thư mục làm việc
 WORKDIR /app
-COPY . .
 
-# Start PulseAudio and Xvfb
-CMD ["sh", "-c", "pulseaudio -D --verbose && Xvfb :99 -screen 0 1024x768x16 &> xvfb.log & python flappy.py --audio-device=alsa"]
+# Chạy trò chơi Python
+CMD ["python3", "flappy.py"]
